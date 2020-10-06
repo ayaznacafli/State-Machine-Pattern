@@ -10,4 +10,5 @@ public interface OrderService {
     List<OrderDto> getAllOrders();
     void updateOrder(OrderDto orderDto);
     List<String> getAllowedActions(Long id);
+    OrderDto actionOrder(OrderDto orderDto, String action);
 }

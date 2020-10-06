@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ForeignStatus implements StatusAction {
+
+    public static final String NAME = "FOREIG";
+
     @Override
     public void applyProcessing(OrderDto orderDto) {
 
@@ -14,7 +17,7 @@ public class ForeignStatus implements StatusAction {
 
     @Override
     public String getStatusName() {
-        return null;
+        return NAME;
     }
 
     @Override

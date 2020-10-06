@@ -24,15 +24,18 @@ public class OrderServiceImpl implements OrderService {
     private final ApplicationEventPublisher applicationEventPublisher;
     private final OrderRepository orderRepository;
 
-    public OrderServiceImpl(ModelMapper modelMapper,ApplicationEventPublisher applicationEventPublisher,OrderRepository orderRepository) {
+    public OrderServiceImpl(List<StatusAction> statusActions, ModelMapper modelMapper,ApplicationEventPublisher applicationEventPublisher,OrderRepository orderRepository) {
         this.modelMapper = modelMapper;
         this.applicationEventPublisher = applicationEventPublisher;
         this.orderRepository = orderRepository;
+        initActions(statusActions);
     }
 
     @Override
     public OrderDto addOrder(OrderDto orderDto) {
-        return null;
+        Order order = modelMapper.map(orderDto,Order.class);
+        order.setOrderStatus(OrderStatus.NEW);
+        return modelMapper.map(orderRepository.save(order),OrderDto.class);
     }
 
     @Override

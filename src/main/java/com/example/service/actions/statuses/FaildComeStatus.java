@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FaildComeStatus implements StatusAction {
+
+    public static final String NAME = "FAILDCOME";
+
     @Override
     public void applyProcessing(OrderDto orderDto) {
 
@@ -14,7 +17,7 @@ public class FaildComeStatus implements StatusAction {
 
     @Override
     public String getStatusName() {
-        return OrderStatus.FIELDCOME.name();
+        return NAME;
     }
 
     @Override

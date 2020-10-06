@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LocalStatus implements StatusAction {
+
+    public static final String NAME = "LOCAL";
+
     @Override
     public void applyProcessing(OrderDto orderDto) {
 
@@ -14,7 +17,7 @@ public class LocalStatus implements StatusAction {
 
     @Override
     public String getStatusName() {
-        return null;
+        return NAME;
     }
 
     @Override

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class PendingStatus implements StatusAction {
 
+    public static final String NAME = "PANDING";
+
+
     @Override
     public void applyProcessing(OrderDto orderDto) {
 
@@ -15,7 +18,7 @@ public class PendingStatus implements StatusAction {
 
     @Override
     public String getStatusName() {
-        return null;
+        return NAME;
     }
 
     @Override

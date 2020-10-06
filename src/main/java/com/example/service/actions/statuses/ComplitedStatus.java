@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ComplitedStatus implements StatusAction {
+
+    public static final String NAME = "COMPLITED";
+
     @Override
     public void applyProcessing(OrderDto orderDto) {
 
@@ -14,7 +17,7 @@ public class ComplitedStatus implements StatusAction {
 
     @Override
     public String getStatusName() {
-        return null;
+        return NAME;
     }
 
     @Override
