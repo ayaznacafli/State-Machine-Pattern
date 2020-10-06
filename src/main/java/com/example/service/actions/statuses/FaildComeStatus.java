@@ -12,7 +12,7 @@ public class FaildComeStatus implements StatusAction {
 
     @Override
     public void applyProcessing(OrderDto orderDto) {
-
+        orderDto.setOrderStatus(getOrderStatus());
     }
 
     @Override

@@ -18,7 +18,8 @@ public class StateMachineApplication {
 		orderDto.setLink("ww.trendyol.com");
 		orderDto.setOrderName("Ayaqqabi");
 	//	OrderDto dto = service.addOrder(orderDto);
-		OrderDto dto = service.actionOrder(orderDto,"PENDING");
+		orderDto.setId(1L);
+		OrderDto dto = service.updateOrder(orderDto,"PENDING");
 		System.out.println(dto);
 	}
 

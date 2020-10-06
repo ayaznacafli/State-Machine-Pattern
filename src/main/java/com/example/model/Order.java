@@ -9,8 +9,9 @@ import javax.persistence.*;
 @Table(name = "order_table")
 public class Order {
 
+  //  @GeneratedValue(strategy=GenerationType.AUTO, generator = "order_Sequence")
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator = "order_Sequence")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String orderName;
     private String link;

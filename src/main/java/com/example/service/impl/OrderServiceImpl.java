@@ -38,28 +38,12 @@ public class OrderServiceImpl implements OrderService {
         return modelMapper.map(orderRepository.save(order),OrderDto.class);
     }
 
-    @Override
-    public List<OrderDto> getAllOrders() {
-        return null;
-    }
-
-    @Override
-    public void updateOrder(OrderDto orderDto) {
-
-    }
-
-    @Override
-    public List<String> getAllowedActions(Long id) {
-        Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Unknown order: "+id));
-        return order.getOrderStatus().getStatuses();
-    }
-
     @Transactional
-    public OrderDto actionOrder(OrderDto orderDto, String action) {
-        StatusAction statusAction = statusActionMap.get(action.toLowerCase());
+    @Override
+    public OrderDto updateOrder(OrderDto orderDto, String status) {
+        StatusAction statusAction = statusActionMap.get(status);
         if(statusAction == null) {
-            throw new IllegalArgumentException("Unknown action: " + action);
+            throw new IllegalArgumentException("Unknown action: " + status);
         }
         return orderRepository.findById(orderDto.getId())
                 .map(order -> {
@@ -72,7 +56,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private Order updateStatus(Order order, OrderStatus updateStatus) {
-        OrderStatus orderStatus =  order.getOrderStatus();
         order.setOrderStatus(updateStatus);
         return orderRepository.save(order);
     }
@@ -82,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
                 .filter(status -> status.getStatuses().contains(statusAction.getStatusName()))
                 .collect(Collectors.toSet());
         if(!allowedSourceStatuses.contains(orderStatus)) {
-            throw new RuntimeException("The transition from the "+ orderStatus.name() +" status to the"
+            throw new RuntimeException("The transition from the "+ orderStatus.name() +" status to the "
                                        + statusAction.getOrderStatus().name() + " status is not allowed");
         }
     }
@@ -93,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
             if(actionMap.containsKey(statusAction.getStatusName())) {
                 throw new IllegalStateException("Dublicate transition"+statusAction.getStatusName());
             }
-            actionMap.put(statusAction.getStatusName(),statusAction);
+            actionMap.put(statusAction.getStatusName(), statusAction);
         }
         statusActionMap = Collections.unmodifiableMap(actionMap);
     }

@@ -6,17 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum  OrderStatus {
-  /*  NEW(),
-    PENDING(),
-    APROVED(),
-    FOREIGN(),
-    SENDED(),
-    LOCAL(),
-    COMPLITED(),
-    CALL(),
-    FIELDFIND(),
-    CANCEL(),
-    FIELDCOME();*/
 
     NEW(PendingStatus.NAME, CancelStatus.NAME),
     PENDING(AprovedStatus.NAME, FaildFindStatus.NAME),

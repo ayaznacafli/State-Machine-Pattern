@@ -2,32 +2,20 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.Oracle9Dialect
+        dialect: org.hibernate.dialect.MySQL5Dialect
       javax:
         persistence:
           query:
             timeout: 600000
-    open-in-view: true
-
-  #  liquibase:
-  #    change-log:
-  #      classpath: /db/changelog/db.changelog-master.yaml
 
   datasource:
-    url: jdbc:oracle:thin:@192.168.31.13:1521:GDBCSCP1
-    username: DEPO
-    password: DEPO
-    driver-class-name: oracle.jdbc.OracleDriver
-    dbcp2:
-      test-while-idle: true
-    tomcat:
-      validation-query: SELECT 1
-    hikari:
-      auto-commit: true
-
+    url: jdbc:mysql://localhost:3308/machine?createDatabaseIfNotExist=true&useSSL=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:
   port: 8080

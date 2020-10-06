@@ -12,7 +12,7 @@ public class NewStatus implements StatusAction {
 
     @Override
     public void applyProcessing(OrderDto orderDto) {
-
+        orderDto.setOrderStatus(getOrderStatus());
     }
 
     @Override
@@ -22,6 +22,6 @@ public class NewStatus implements StatusAction {
 
     @Override
     public OrderStatus getOrderStatus() {
-        return null;
+        return OrderStatus.NEW;
     }
 }
