@@ -16,7 +16,7 @@ public enum  OrderStatus {
     COMPLITED(),
     CALL(),
     FIELDFIND(),
-    CANCEL(),
+    CANCEL(ComplitedStatus.NAME),
     FIELDCOME();
 
 
